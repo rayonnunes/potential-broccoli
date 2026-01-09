@@ -4,15 +4,16 @@ const crypto = require('crypto')
 
 var cors = require('cors')
 
-var corsOptions = {
-  origin: '*',
-  optionsSuccessStatus: 200
-}
+const corsOptions = {
+  origin: ['http://localhost:5173']
+};
 
 const app = express()
 const port = 3000
 
 const jsonParser = bodyParser.json()
+
+app.use(cors(corsOptions));
 
 const transactions = [
   {
@@ -22,13 +23,13 @@ const transactions = [
   }
 ]
 
-app.get('/transaction', cors(corsOptions), (req, res) => {
+app.get('/transaction', (req, res) => {
   res.status(200).send({
     transactions
   })
 })
 
-app.post('/transaction', cors(corsOptions), jsonParser, (req, res) => {
+app.post('/transaction', jsonParser, (req, res) => {
   try {
     let badRequest = false
 
@@ -39,8 +40,6 @@ app.post('/transaction', cors(corsOptions), jsonParser, (req, res) => {
     }
 
     const id = crypto.randomUUID()
-
-    console.log(req.body)
 
     transactions.push({
       ...req.body,
