@@ -2,11 +2,11 @@ import { useState, type ChangeEvent, type FormEvent } from "react";
 import "./App.css";
 
 function App() {
-  const [amount, setAmount] = useState<string>();
+  const [amount, setAmount] = useState<number>();
   const [description, setDescription] = useState<string>();
 
   const onAmountChange = (e: ChangeEvent<HTMLInputElement>) => {
-    setAmount(e.target.value);
+    setAmount(Number(e.target.value));
   };
 
   const onDescriptionChange = (e: ChangeEvent<HTMLInputElement>) => {
@@ -24,6 +24,7 @@ function App() {
     try {
       const response = await fetch("http://localhost:3000/transaction", {
         method: "POST",
+        headers: { "Content-Type": "application/json" },
         body: payload,
       });
 
