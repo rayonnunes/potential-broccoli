@@ -55,10 +55,12 @@ function App() {
             prefix="$"
             value={amount}
             onChange={onAmountChange}
+            data-testid="amount-input"
           />
           <label htmlFor="description">Description</label>
           <input
             id="description"
+            data-testid="description-input"
             required
             value={description}
             onChange={onDescriptionChange}
