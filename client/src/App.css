@@ -1,0 +1,13 @@
+.main-content {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  width: 100vw;
+  align-items: center;
+  justify-items: center;
+}
+.form-content {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75em;
+}
